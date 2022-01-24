@@ -1,0 +1,3 @@
+[submodule "app/src/main/c/Core"]
+	path = app/src/main/c/Core
+	url = https://github.com/serek8/Cloud-On-Mobile-Core
