@@ -13,10 +13,26 @@
 #include <string.h>
 #include <jni.h>
 
+//JavaVM* jvm;
+jobject main_activity;
+JNIEnv *callback_jnienv;
+
+void didDownloadFile(const char *filename){
+
+//    jint result = (*jvm)->GetEnv(jvm, &callback_jnienv, JNI_VERSION_1_6);
+    jclass myClass = (*callback_jnienv)->GetObjectClass(callback_jnienv, main_activity);
+    jmethodID myMethod = (*callback_jnienv)->GetMethodID(callback_jnienv, myClass, "onFileUploaded", "(Ljava/lang/String;)V");
+    jstring jFilename = (*callback_jnienv)->NewStringUTF(callback_jnienv, filename);
+    (*callback_jnienv)->CallVoidMethod(callback_jnienv, main_activity, myMethod, jFilename);
+}
 
 jint
 Java_cc_cloudon_MainActivity_setupEnvironment( JNIEnv* env, jobject thiz, jstring path){
     LOGE("setup_environment...");
+//    main_activity = (*env)->NewGlobalRef(env, arg_main_activity);
+//    (*env)->GetJavaVM(env, &jvm);
+//    didDownloadFile("sd");
+
     const char * path_str = (*env)->GetStringUTFChars(env, path, NULL);
     char buff[PATH_MAX];
     snprintf(buff, PATH_MAX, "%s/hosted_files", path_str);
@@ -30,6 +46,7 @@ Java_cc_cloudon_MainActivity_setupEnvironment( JNIEnv* env, jobject thiz, jstrin
     }
 
     setup_environment(buff);
+    callback_did_download_file_funptr = didDownloadFile;
     return 0;
 }
 
@@ -52,6 +69,9 @@ Java_cc_cloudon_MainActivity_connectToServer( JNIEnv* env, jobject thiz, jstring
 
 jint
 Java_cc_cloudon_MainActivity_runCloud( JNIEnv* env, jobject thiz) {
+//        (*env)->GetJavaVM(env, &jvm);
+    main_activity = (*env)->NewGlobalRef(env, thiz);
+    callback_jnienv = env;
     return runEndlessServer();
 }
 

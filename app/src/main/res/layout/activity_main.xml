@@ -1,60 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#030E1D"
-    android:id="@+id/main_layout"
+    android:orientation="vertical"
     tools:context="cc.cloudon.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="160sp"
-        app:srcCompat="@drawable/ic_locked" />
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:weightSum="1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-103dp">
 
-    <TextView
-        android:id="@+id/textViewAccessCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60sp"
-        android:text="Access code"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/imageViewLocker"
+            android:layout_width="109dp"
+            android:layout_height="82dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="160sp"
+            app:srcCompat="@drawable/ic_locked" />
 
-    <TextView
-        android:id="@+id/textViewPasscode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="20px"
-        android:text="x x x x x x"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp" />
+        <TextView
+            android:id="@+id/textViewAccessCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60sp"
+            android:fontFamily=""
+            android:text="Access code"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/buttonGeneratePasscode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#0E70F1"
-        android:layout_marginTop="60sp"
-        android:layout_gravity="center_horizontal"
-        android:text="Get access code" />
+        <TextView
+            android:id="@+id/textViewPasscode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.5"
+            android:text="xxxxxx"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/buttonGeneratePasscode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:backgroundTint="#0E70F1"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="center"
+                android:lineHeight="24sp"
+                android:paddingLeft="24dp"
+                android:paddingTop="16dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="16dp"
+                android:text="Get access code"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/buttonGeneratePasscode2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:lineHeight="24sp"
+            android:paddingLeft="24dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/cc_blue_link"
+            android:drawableTint="@color/cc_blue_link"
+            android:paddingRight="24dp"
+            android:paddingBottom="16dp"
+            android:drawableLeft="@drawable/rotate_cw"
+            android:text="Get new code"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="12dp" />
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3sp"
+            android:text="How to use it?"
+            android:visibility="gone"
+            android:textColor="@color/cc_blue_link"
+            android:textSize="14sp">
+
+        </TextView>
+
+
+    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_marginBottom="0px"
-        android:gravity="bottom"
-        android:layout_gravity="bottom"
+        android:layout_height="0dp"
+        android:background="@drawable/layout_rounded_bg"
         android:translationZ="90dp"
-        android:layout_height="4000px">
+        app:layout_constraintHeight_percent="1"
+        app:layout_constraintTop_toBottomOf="@+id/main_layout"
+        app:layout_constraintVertical_bias="0.5">
+
     </FrameLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

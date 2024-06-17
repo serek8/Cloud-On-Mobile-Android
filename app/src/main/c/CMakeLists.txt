@@ -32,6 +32,7 @@ add_library(
         Core/base64/encode.c
         Core/base64/decode.c
         Core/FileManager/FileManager.c
+        Core/FileManager/FileEncryptor.c
         Core/TcpClient/TcpParser.c
         Core/TcpClient/TcpClient.c
         Core/TcpClient/TlsClient.c
