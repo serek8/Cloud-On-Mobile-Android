@@ -14,8 +14,8 @@ Java_com_gs_jantest_MainActivity_stdevminor(JNIEnv *env, jobject this, jlong std
 #include <string.h>
 #include <jni.h>
 
-jstring
-Java_cc_cloudon_MainActivity_stringFromJNI( JNIEnv* env, jobject thiz ){
-//    return "sd";
-    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI ");
-}
+//jstring
+//Java_cc_cloudon_MainActivity_stringFromJNI( JNIEnv* env, jobject thiz ){
+////    return "sd";
+//    return (*env)->NewStringUTF(env, "Hello from JNI !  Compiled with ABI ");
+//}

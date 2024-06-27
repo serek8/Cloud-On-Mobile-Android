@@ -1,0 +1,178 @@
+protection:
+  enabled: false
+  spray-allowlist:
+    - "Java_cc_cloudon_*"
+    - "parseTcpMessage"
+    - "encrypt*"
+    - "decrypt*"
+    - "didDownloadFile"
+    - "create_demo_files"
+    - "create_socket"
+    - "receive_string_from_server"
+    - "register_natives"
+    - "connect_to_server"
+    - "CORE*"
+    - "tlsHanshake"
+    - "setup_environment"
+    - "send_string_to_server"
+    - "send_json_to_server"
+    - "parseReonnectReply"
+    - "SSL_get_verify_result"
+    - "http_client_init"
+    - "X509_STORE_add_cert"
+
+  environment-integrity:
+    enabled: true
+    selinux:
+      enabled: true
+    virtual-environment:
+      enabled: true
+    hooking-libs:
+      enabled: true
+      distributed-controlflow: true
+      checkpoints:
+        - "register_natives"
+        - "setup_environment"
+    debugger:
+      enabled: true
+    emulator:
+      distributed-controlflow: true
+      checkpoints:
+        - "Java_cc_cloudon_MainActivity_connectToServer"
+      enabled: true
+
+  arithmetic-operations:
+    enabled: true
+    allowlists:
+      - level: min
+        allowlist:
+          - ".*"
+      - level: max
+        allowlist:
+          - "Java_cc_cloudon_MainActivity_setupEnvironment"
+          - "Java_cc_cloudon_MainActivity_connectToServer"
+          - "Java_cc_cloudon_MainActivity_runCloud"
+          - "Java_cc_cloudon_FileListFragment_listDirLocally"
+          - "parseTcpMessage"
+          - "encrypt*"
+          - "decrypt*"
+          - "didDownloadFile"
+          - "create_demo_files"
+          - "receive_string_from_server"
+          - "register_natives"
+          - "connect_to_server"
+          - "CORE*"
+          - "tlsHanshake"
+          - "send_string_to_server"
+          - "send_json_to_server"
+          - "parseReonnectReply"
+          - "cJSON*"
+          - "create_socket"
+          - "SSL_get_verify_result"
+          - "http_client_init"
+
+  code-integrity:
+    enabled: true
+    functions:
+      enabled: true
+      prologues: true
+      symbol-table: true
+      allowlist:
+        - "Java_cc_cloudon_MainActivity_setupEnvironment"
+        - "Java_cc_cloudon_MainActivity_connectToServer"
+        - "Java_cc_cloudon_MainActivity_runCloud"
+        - "Java_cc_cloudon_FileListFragment_listDirLocally"
+        - "parseTcpMessage"
+        - "encrypt*"
+        - "decrypt*"
+        - "setup_environment"
+        - "didDownloadFile"
+        - "create_demo_files"
+        - "receive_string_from_server"
+        - "register_natives"
+        - "connect_to_server"
+        - "CORE*"
+        - "init_openssl_library"
+        - "tlsHanshake"
+        - "send_string_to_server"
+        - "send_json_to_server"
+        - "parseReonnectReply"
+        - "cJSON*"
+        - "create_socket"
+        - "SSL_get_verify_result"
+        - "http_client_init"
+
+  app-integrity:
+    enabled: true
+    certificate-hashes:
+      - "7BF718449D8BA4752AD385B0D428C44AF1CFE9088C16B2DD5A29CB5ACB955464"
+
+  control-flow:
+    enabled: true
+    logic:
+      enabled: true
+      allowlists:
+        - level: min
+          allowlist:
+            - ".*"
+        - level: max
+          allowlist:
+            - "Java_cc_cloudon_MainActivity_setupEnvironment"
+            - "Java_cc_cloudon_MainActivity_connectToServer"
+            - "Java_cc_cloudon_MainActivity_runCloud"
+            - "Java_cc_cloudon_FileListFragment_listDirLocally"
+            - "parseTcpMessage"
+            - "encrypt*"
+            - "decrypt*"
+            - "didDownloadFile"
+            - "create_demo_files"
+            - "receive_string_from_server"
+            - "register_natives"
+            - "connect_to_server"
+            - "CORE*"
+            - "tlsHanshake"
+            - "send_string_to_server"
+            - "send_json_to_server"
+            - "parseReonnectReply"
+            - "cJSON*"
+            - "init_openssl_library"
+            - "create_socket"
+            - "SSL_get_verify_result"
+            - "http_client_init"
+            - "JNI_OnLoad"
+  
+  data:
+    enabled: true
+    allowlist:
+      - "connectToServer"
+      - "runCloud"
+      - "setupEnvironment"
+      - "listDirLocally"
+      - "(Ljava/*"
+      - "cc/cloudon*"
+      - "%s/hosted_files"
+      - "()I"
+      - "onFileUploaded"
+      - "filepath"
+      - "result"
+      - "date_epoch"
+      - "upload"
+      - "code_token"
+      - "reconnect"
+      - "Parsing*"
+      - "A{*"
+      - "command"
+      - "payload"
+      - "forward"
+      - "download"
+      - "error_message"
+      - "Can't remove file"
+      - "bytes"
+      - "buffer*"
+      - "KhMNGL6e/P5Yhheu2Bv4cQ=="
+      - "LCmctXGq1/AFMD81GlapKVkeyWTHgOKqEPoWWvvnOxc="
+      - "list-files"
+      - "-----BEGIN CERTIFICATE-----*"
+      - "notes.txt"
+      - "When life gives you lemons, make lemonade"
+      - "/Users"

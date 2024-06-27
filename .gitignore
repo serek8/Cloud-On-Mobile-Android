@@ -15,7 +15,9 @@
 local.properties
 .gradle/
 build/
-
+app/release/
+app/src/main/c/bitguard.yml
+app/src/main/c/bitguard/
 # Local configuration file (sdk path, etc)
 local.properties
 

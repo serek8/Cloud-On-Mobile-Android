@@ -2,12 +2,10 @@ package cc.cloudon
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.FileUtils
 import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
@@ -23,7 +21,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.net.toFile
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -38,22 +35,26 @@ class MainActivity : AppCompatActivity(), OnTouchListener {
     // Use to find out the animation direction
     var listViewPreviousPosY = listViewDefaultPosY;
     private var listViewPreviousPosYMoveTimestamp : Long = 0;
+    var core = CoreWrapper(this)
+//    external fun stringFromJNI(): String
 
-    external fun stringFromJNI(): String
-    external fun setupEnvironment(path: String): Int
-    external fun connectToServer(ip: String, port:Int): Int
-    external fun runCloud(): Int
+//    external fun setupEnvironment(path: String): Int
+//    external fun connectToServer(ip: String, port:Int): Int
+//    external fun runCloud(): Int
+//    external fun closeConnection(): Int
 
-    init {
-        System.loadLibrary("native-lib")
-        System.loadLibrary("core-lib")
-    }
+
+//    init {
+////        System.loadLibrary("native-lib")
+//        System.loadLibrary("core-lib")
+//    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if(setupEnvironment(applicationInfo.dataDir) < 0){
+//        core = CoreWrapper(this)
+        if(core.setupEnvironment(applicationInfo.dataDir) < 0){
             // error
             return;
         }
@@ -141,8 +142,8 @@ class MainActivity : AppCompatActivity(), OnTouchListener {
     }
 
     fun onNewPasscodeClick(){
-            thread {
-                val code = connectToServer("cloudon.cc", 9293)
+            thread(isDaemon = true) {
+                val code = core.connectToServer("cloudon.cc", 9293)
                 runOnUiThread {
                     val myTextView = findViewById<TextView>(R.id.textViewPasscode)
                     if(code > 0){
@@ -152,11 +153,16 @@ class MainActivity : AppCompatActivity(), OnTouchListener {
                     else{
                         myTextView.text = "Error"
                     }
-
                 }
-                runCloud()
+//                runCloud()
             }
     }
+
+//    override fun onPause() {
+//        closeConnection();
+//        super.onPause()
+//
+//    }
 
 
     private fun addFragmentToActivity(){
@@ -230,3 +236,5 @@ class MainActivity : AppCompatActivity(), OnTouchListener {
         const val BOTTOM_MARGIN_FILE_LIST = 400.0f
     }
 }
+
+
